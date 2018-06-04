@@ -2,6 +2,9 @@ dist/*
 build/*
 config/*
 dll/*
-src/static/*
+src/static/ajax.js
+src/static/upload.js
+src/static/jquery.toast.js
+src/static/ajax.js
 node_modules/*
 .eslintcache
