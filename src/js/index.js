@@ -19,5 +19,5 @@ window.onload = function() {
   // let match = ua.match(/OS (\d+)_(\d+)_?(\d+)?/);
   // console.log(utils.getIOSVersion());
   // console.log(utils.getAndroidVersion());
-  // alert(ua);
+  // alert(utils.isQQ);
 };

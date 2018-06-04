@@ -126,13 +126,14 @@ function jsonToParams(json) {
 }
 
 const ua = navigator.userAgent.toLowerCase();
-const isWeixin = /micromessenger/i.test(ua);
 // const isWnl = /wnl/i.test(ua);
 // const appVersion = parseInt(ua.substr(ua.indexOf('wnl ') + 4, 5).replace(/\./g, ''));
 // const appVersionString = ua.substr(ua.indexOf('wnl ') + 4, 5);
 // const isIphoneX = isIPhone && window.innerWidth === 375 && window.devicePixelRatio === 3;
 // const isIE = /msie/i.test(ua);
 // const isSafari = /afari/.test(ua);
+const isWx = /micromessenger/i.test(ua);
+const isQQ = /\sqq|mqqbrowser/.test(ua);
 const iOSVersion = getIOSVersion();
 const androidVersion = getAndroidVersion();
 const isAndroid = /android|htc/i.test(ua) || (window.navigator.platform + '').match(/linux/i);
@@ -150,7 +151,8 @@ const utils = {
   androidVersion,
   isAndroid,
   isIOS,
-  isWeixin
+  isWx,
+  isQQ
 };
 
 export default utils;
