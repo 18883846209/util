@@ -1,4 +1,4 @@
-# **多页面webpack脚手架-cskeleton**
+<!-- # **多页面webpack脚手架-cskeleton**
 
 ## git
   [http://192.168.1.80:8080/summary/~guojinhai%2Fwnlui_html.git](http://192.168.1.80:8080/summary/~guojinhai%2Fwnlui_html.git)
@@ -92,4 +92,4 @@
   1. 源码管理中使用http的地址，Branch使用maser分支
   2. 如使用cskeleton，构建的shell则无需修改
   3. 构建后操作中的邮箱填写自己的公司邮箱
-  4. FTP Publishers中的server选择线上环境，**`特别注意Remote directory的值，必须与脚手架中的config/index.js中的ftpDirectory值相同`**
+  4. FTP Publishers中的server选择线上环境，**`特别注意Remote directory的值，必须与脚手架中的config/index.js中的ftpDirectory值相同`** -->

@@ -65,3 +65,22 @@ export function addBtnState(dom, el, _class) {
       audioAutoPlay()
     })
   }
+  
+  /**
+   * [longPress 长按事件]
+   * @param {*} el [dom对象]
+   * @param {*} fn [回调函数]
+   * @param {number} [ms=800] [长按时间]
+   */
+  export function longPress(el, fn, ms = 800) {
+    let timer = null;
+    el.addEventListener('touchstart', () => {
+      timer = setTimeout(fn, ms);
+    }, false);
+    el.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+    }, false);
+    el.addEventListener('touchend', () => {
+      clearTimeout(timer);
+    }, false);
+  }

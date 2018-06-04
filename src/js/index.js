@@ -9,4 +9,23 @@ import '../css/index.scss';
 
 window.onload = function() {
   console.log('test');
+  let body = document.querySelector('body');
+  function longPress(el, fn, ms = 800) {
+    let timer = null;
+    el.addEventListener('touchstart', () => {
+      timer = setTimeout(fn, ms);
+    }, false);
+    el.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+    }, false);
+    el.addEventListener('touchend', () => {
+      clearTimeout(timer);
+    }, false);
+  }
+  longPress(body, () => {
+    console.log('aa');
+  });
+  // body.addEventListener('touchstart', (e) => {
+  //   console.log(e.type);
+  // }, false);
 };
