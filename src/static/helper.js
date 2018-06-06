@@ -86,7 +86,7 @@ function getParam(name, url) {
 /**
  * [longPress 长按事件]
  * @param {*} el [dom对象]
- * @param {*} fn [回调函数]
+ * @param {function} fn [回调函数]
  * @param {number} [ms=800] [长按时间]
  */
 function longPress(el, fn, ms = 800) {
@@ -133,7 +133,7 @@ const ua = navigator.userAgent.toLowerCase();
 // const isIE = /msie/i.test(ua);
 // const isSafari = /afari/.test(ua);
 const isWx = /micromessenger/i.test(ua);
-const isQQ = /\sqq|mqqbrowser/.test(ua);
+const isQQ = /\sqq|mqqbrowser/i.test(ua);
 const iOSVersion = getIOSVersion();
 const androidVersion = getAndroidVersion();
 const isAndroid = /android|htc/i.test(ua) || (window.navigator.platform + '').match(/linux/i);

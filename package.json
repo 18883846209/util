@@ -43,7 +43,8 @@
     "husky": "^0.15.0-rc.13",
     "jquery": "^3.2.1",
     "js-base64": "^2.4.3",
-    "lint-staged": "^7.0.0"
+    "lint-staged": "^7.0.0",
+    "vue-loader": "^15.2.4"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.1",
