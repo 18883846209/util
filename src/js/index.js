@@ -29,7 +29,17 @@ window.onload = function() {
     // setTimeout(() => {
     //   $('.toast_wrap').removeClass('vshow');
     // }, 800);
-    toast.show('this is a toast', {
+    let toast1 = new Toast();
+    toast1.show('this is a toast', {
+      bottom_center: 'bottom_center'
+    });
+  });
+  $('.show1').click(() => {
+    // setTimeout(() => {
+    //   $('.toast_wrap').removeClass('vshow');
+    // }, 800);
+    let toast2 = new Toast();
+    toast2.show('this is a toast1', {
       bottom_center: 'bottom_center'
     });
   });

@@ -60,6 +60,7 @@ window.scrollHanlder = {
 };
 export default class Toast {
   constructor() {
+    this.reset(); // 防止多次调用出错
     this.timer1 = null;
     this.timer2 = null;
     this.toastwrap = document.createElement('div');
@@ -72,7 +73,8 @@ export default class Toast {
     // this.show(text, options);
   }
   show(text, options) {
-    if (document.querySelector('.toast_text')) return;
+    if (document.querySelector('.toast_text')) return; // 防止多次点击出错
+    // if (this.toasttext) return;
     this.toastwrap.appendChild(this.toasttext);
     this.toasttext.innerHTML = text.length > 0 ? text : '';
     // document.body.appendChild(this.toastwrap);
@@ -115,6 +117,9 @@ export default class Toast {
   }
   hide() {
     this.cleartimer();
+    this.removechild();
+  }
+  removechild() {
     if (document.querySelector('.toast_text')) {
       this.toastwrap.classList.remove('vshow');
       this.toastwrap.removeChild(this.toasttext);
@@ -133,5 +138,12 @@ export default class Toast {
   cleartimer() {
     clearTimeout(this.timer1);
     clearTimeout(this.timer2);
+  }
+  reset() {
+    this.cleartimer();
+    if (document.querySelector('.toast_wrap')) {
+      // this.toastwrap.classList.remove('vshow');
+      document.body.removeChild(document.querySelector('.toast_wrap'));
+    }
   }
 }
