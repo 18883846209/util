@@ -60,6 +60,8 @@ window.scrollHanlder = {
 };
 export default class Toast {
   constructor() {
+    this.timer1 = null;
+    this.timer2 = null;
     this.toastwrap = document.createElement('div');
     this.toasttext = document.createElement('div');
     this.modal_mask = document.createElement('div');
@@ -74,7 +76,7 @@ export default class Toast {
     this.toastwrap.appendChild(this.toasttext);
     this.toasttext.innerHTML = text.length > 0 ? text : '';
     // document.body.appendChild(this.toastwrap);
-    let ms = options && options.ms || 950; // eslint-disable-line
+    let ms = (options && options.ms) || 950; // eslint-disable-line
     // 如果传入样式，则按传入的样式显示(不传默认居中显示)
     if (options && options.top_center) {
       this.toastwrap.classList.add('top_center');
@@ -90,36 +92,29 @@ export default class Toast {
       this.toastwrap.style.bottom = options.bottom + 'px';
     }
     if (options && options.isModal) {
-      document.body.appendChild(this.modal_mask);
-      document.querySelector('.modal_mask').addEventListener('touchmove', (e) => {
-        e.preventDefault();
-      }, false);
-      disableScroll();
+      this.disTouchmove();
     }
     this.toastwrap.classList.add('vshow');
-    let timer1 = setTimeout(() => {
+    this.timer1 = setTimeout(() => {
       if (options && options.isModal) {
         document.body.removeChild(this.modal_mask);
         enableScroll();
       }
       this.toastwrap.classList.remove('vshow');
     }, ms);
-    let timer2 = setTimeout(() => {
+    this.timer2 = setTimeout(() => {
       if (document.querySelector('.toast_text')) {
         this.toastwrap.removeChild(this.toasttext);
       }
     }, ms + 300);
     if (options && options.alwaysShow) {
-      document.body.appendChild(this.modal_mask);
-      document.querySelector('.modal_mask').addEventListener('touchmove', (e) => {
-        e.preventDefault();
-      }, false);
+      this.disTouchmove();
       disableScroll();
-      clearTimeout(timer1);
-      clearTimeout(timer2);
+      this.cleartimer();
     }
   }
   hide() {
+    this.cleartimer();
     if (document.querySelector('.toast_text')) {
       this.toastwrap.classList.remove('vshow');
       this.toastwrap.removeChild(this.toasttext);
@@ -127,5 +122,16 @@ export default class Toast {
     if (document.querySelector('.modal_mask')) {
       document.body.removeChild(this.modal_mask);
     }
+  }
+  disTouchmove() {
+    document.body.appendChild(this.modal_mask);
+    document.querySelector('.modal_mask').addEventListener('touchmove', (e) => {
+      e.preventDefault();
+    }, false);
+    disableScroll();
+  }
+  cleartimer() {
+    clearTimeout(this.timer1);
+    clearTimeout(this.timer2);
   }
 }
