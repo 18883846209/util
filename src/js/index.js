@@ -30,6 +30,21 @@ window.onload = function() {
     // setTimeout(() => {
     //   $('.toast_wrap').removeClass('vshow');
     // }, 800);
-    new toast().show('this is a toast', { bottom_center: 'bottom_center' });
+    let Toast = new toast();
+    Toast.show('this is a toast', { bottom_center: 'bottom_center' }); // eslint-disable-line
+    // setTimeout(() => {
+    //   Toast.hide();
+    // }, 800);
+  });
+  $('.test').click(() => {
+    // $('.toast_wrap').addClass('vshow');
+    // setTimeout(() => {
+    //   $('.toast_wrap').removeClass('vshow');
+    // }, 800);
+    let Toast = new toast();
+    Toast.show('新的toast', { bottom_center: 'bottom_center' }); // eslint-disable-line
+    // setTimeout(() => {
+    //   Toast.hide();
+    // }, 800);
   });
 };

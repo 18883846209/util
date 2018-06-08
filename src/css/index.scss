@@ -2,10 +2,15 @@
 
 body {
     height: 100vh;
+    // overflow: hidden;
     text-align: center;
     #long {
         margin-top: 30px;
     }
+}
+.con {
+    height: 130vh;
+    overflow: scroll !important;
 }
 #press {
     width: 100px;

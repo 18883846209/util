@@ -7,5 +7,6 @@ src/static/upload.js
 src/static/jquery.toast.js
 src/static/ajax.js
 src/static/flexible.js
+src/toast/lib.js
 node_modules/*
 .eslintcache
