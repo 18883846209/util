@@ -58,7 +58,7 @@ window.scrollHanlder = {
   disableScroll,
   enableScroll
 };
-export default class toast {
+export default class Toast {
   constructor() {
     this.toastwrap = document.createElement('div');
     this.toasttext = document.createElement('div');
@@ -66,21 +66,30 @@ export default class toast {
     this.toastwrap.className = 'toast_wrap';
     this.toasttext.className = 'toast_text';
     this.modal_mask.className = 'modal_mask';
+    document.body.appendChild(this.toastwrap);
     // this.show(text, options);
   }
   show(text, options) {
-    // if (document.querySelector('.toast_wrap')) return;
+    if (document.querySelector('.toast_text')) return;
     this.toastwrap.appendChild(this.toasttext);
     this.toasttext.innerHTML = text.length > 0 ? text : '';
-    document.body.appendChild(this.toastwrap);
-    let ms = options.ms || 5800; // eslint-disable-line
-    if (options.top_center) {
+    // document.body.appendChild(this.toastwrap);
+    let ms = options && options.ms || 950; // eslint-disable-line
+    // 如果传入样式，则按传入的样式显示(不传默认居中显示)
+    if (options && options.top_center) {
       this.toastwrap.classList.add('top_center');
     }
-    if (options.bottom_center) {
+    if (options && options.bottom_center) {
       this.toastwrap.classList.add('bottom_center');
     }
-    if (options.isModal) {
+    if (options && (options.top || options.left || options.right || options.bottom)) {
+      this.toastwrap.style.width = 'auto';
+      this.toastwrap.style.top = options.top + 'px';
+      this.toastwrap.style.left = options.left + 'px';
+      this.toastwrap.style.right = options.right + 'px';
+      this.toastwrap.style.bottom = options.bottom + 'px';
+    }
+    if (options && options.isModal) {
       document.body.appendChild(this.modal_mask);
       document.querySelector('.modal_mask').addEventListener('touchmove', (e) => {
         e.preventDefault();
@@ -88,21 +97,34 @@ export default class toast {
       disableScroll();
     }
     this.toastwrap.classList.add('vshow');
-    setTimeout(() => {
-      if (options.isModal) {
+    let timer1 = setTimeout(() => {
+      if (options && options.isModal) {
         document.body.removeChild(this.modal_mask);
         enableScroll();
       }
       this.toastwrap.classList.remove('vshow');
     }, ms);
-    setTimeout(() => {
-      document.body.removeChild(this.toastwrap);
+    let timer2 = setTimeout(() => {
+      if (document.querySelector('.toast_text')) {
+        this.toastwrap.removeChild(this.toasttext);
+      }
     }, ms + 300);
+    if (options && options.alwaysShow) {
+      document.body.appendChild(this.modal_mask);
+      document.querySelector('.modal_mask').addEventListener('touchmove', (e) => {
+        e.preventDefault();
+      }, false);
+      disableScroll();
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    }
   }
   hide() {
-    if (document.querySelector('.toast_wrap')) {
+    if (document.querySelector('.toast_text')) {
       this.toastwrap.classList.remove('vshow');
-      document.body.removeChild(this.toastwrap);
+      this.toastwrap.removeChild(this.toasttext);
+    }
+    if (document.querySelector('.modal_mask')) {
       document.body.removeChild(this.modal_mask);
     }
   }

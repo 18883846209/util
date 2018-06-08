@@ -3,7 +3,7 @@ import 'babel-polyfill';
 import '../static/flexible';
 import '../css/index.scss';
 import utils from '../static/helper';
-import toast from '../toast/toast';
+import Toast from '../toast/toast';
 // import '../static/vconsole.min';
 
 // const qr = 'https://qiniu.image.cq-wnl.com/content/201805315a71351fb9684f72bfd3448f19cdaf4b.jpg';
@@ -25,26 +25,22 @@ window.onload = function() {
   // const obj = { id: 1, name: 'alice' };
   // const { name, id } = obj;
   // console.log(name, id);
+  let toast = new Toast();
   $('.show').click(() => {
-    // $('.toast_wrap').addClass('vshow');
     // setTimeout(() => {
     //   $('.toast_wrap').removeClass('vshow');
     // }, 800);
-    let Toast = new toast();
-    Toast.show('this is a toast', { bottom_center: 'bottom_center' }); // eslint-disable-line
-    // setTimeout(() => {
-    //   Toast.hide();
-    // }, 800);
+    toast.show('this is a toast');
   });
-  $('.test').click(() => {
-    // $('.toast_wrap').addClass('vshow');
+  $('.loading').click(() => {
     // setTimeout(() => {
     //   $('.toast_wrap').removeClass('vshow');
     // }, 800);
-    let Toast = new toast();
-    Toast.show('新的toast', { bottom_center: 'bottom_center' }); // eslint-disable-line
-    // setTimeout(() => {
-    //   Toast.hide();
-    // }, 800);
+    toast.show('加载中...', {
+      alwaysShow: true
+    });
+  });
+  $('#close').click(() => {
+    toast.hide();
   });
 };
