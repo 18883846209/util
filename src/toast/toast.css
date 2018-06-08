@@ -1,0 +1,33 @@
+.toast_wrap {
+    position: fixed;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+    font-size: 0;
+    -webkit-text-size-adjust: none;
+    z-index: 9999 !important;  
+}
+.toast_text {
+    display: inline-block;
+    max-width: 80%;
+    padding: 8px 12px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    font-size: 16px;   
+}
+.vshow {
+    opacity: 1;
+    visibility: visible;
+}
+.top_center {
+    top: 45px;
+}
+.bottom_center {
+    top: auto;
+    bottom: 45px;
+}
