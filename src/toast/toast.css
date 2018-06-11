@@ -6,6 +6,7 @@
     box-sizing: border-box;
     opacity: 0;
     visibility: hidden;
+    /* backface-visibility: hidden; */
     transition: all .3s;
     font-size: 0;
     -webkit-text-size-adjust: none;
@@ -17,13 +18,14 @@
     padding: 8px 12px;
     /* padding: 15px 30px;     */
     color: #fff;
-    background-color: rgba(0, 0, 0, 0.7);
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    background-color: #000;  
     box-sizing: border-box;
     border-radius: 5px;
-    font-size: 16px; 
+    font-size: 16px;
 }
 .vshow {
-    opacity: 1;
+    opacity: 0.8;
     visibility: visible;
 }
 .top_center {

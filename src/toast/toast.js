@@ -61,6 +61,7 @@ export default class Toast {
     this.reset(); // 防止多次调用出错
     this.timer1 = null;
     this.timer2 = null;
+    this.timer3 = null;
     this.toastwrap = document.createElement('div');
     this.toasttext = document.createElement('div');
     this.modal_mask = document.createElement('div');
@@ -68,14 +69,11 @@ export default class Toast {
     this.toasttext.className = 'toast_text';
     this.modal_mask.className = 'modal_mask';
     document.body.appendChild(this.toastwrap);
-    // this.show(text, options);
   }
   show(text, options) {
-    if (document.querySelector('.toast_text')) return; // 防止多次点击出错
-    // if (this.toasttext) return;
+    if (document.getElementsByClassName('.toast_text') && this.toastwrap.className.indexOf('vshow') > -1) return; // 防止多次点击出错
     this.toastwrap.appendChild(this.toasttext);
-    this.toasttext.innerHTML = text.length > 0 ? text : '';
-    // document.body.appendChild(this.toastwrap);
+    this.toasttext.innerHTML = text.toString().length > 0 ? text.toString() : '';
     let ms = (options && options.ms) || 950; // eslint-disable-line
     // 如果传入样式，则按传入的样式显示(不传默认居中显示)
     if (options && options.top_center) {
@@ -84,13 +82,13 @@ export default class Toast {
     if (options && options.bottom_center) {
       this.toastwrap.classList.add('bottom_center');
     }
-    if (options && (options.top || options.left || options.right || options.bottom)) {
-      this.toastwrap.style.width = 'auto';
-      this.toastwrap.style.top = options.top + 'px';
-      this.toastwrap.style.left = options.left + 'px';
-      this.toastwrap.style.right = options.right + 'px';
-      this.toastwrap.style.bottom = options.bottom + 'px';
-    }
+    // if (options && (options.top || options.left || options.right || options.bottom)) {
+    //   this.toastwrap.style.width = 'auto';
+    //   this.toastwrap.style.top = options.top + 'px';
+    //   this.toastwrap.style.left = options.left + 'px';
+    //   this.toastwrap.style.right = options.right + 'px';
+    //   this.toastwrap.style.bottom = options.bottom + 'px';
+    // }
     if (options && options.padding) { // toast内边距
       this.toasttext.style.padding = options.padding;
     }
@@ -103,13 +101,13 @@ export default class Toast {
     if (options && options.fontsize) { // toast字体大小
       this.toasttext.style.fontSize = options.fontsize;
     }
-    // if (options && options.bg) { // toast背景颜色
-    //   this.toasttext.style.backgroundColor = options.bg;
-    // }
     if (options && options.isModal) {
       this.disTouchmove();
     }
     this.toastwrap.classList.add('vshow');
+    // this.timer3 = setTimeout(() => {
+    //   this.toastwrap.classList.add('vshow');
+    // }, 0);
     this.timer1 = setTimeout(() => {
       if (options && options.isModal) {
         document.body.removeChild(this.modal_mask);
@@ -135,7 +133,7 @@ export default class Toast {
   removechild() {
     if (document.querySelector('.toast_text')) {
       this.toastwrap.classList.remove('vshow');
-      this.toastwrap.removeChild(this.toasttext);
+      this.toastwrap.removeChild(document.querySelector('.toast_text'));
     }
     if (document.querySelector('.modal_mask')) {
       document.body.removeChild(this.modal_mask);

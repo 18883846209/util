@@ -9,10 +9,10 @@ import Toast from '../toast/toast';
 // const THREE = require('three');
 
 window.onload = function() {
-  let toast = new Toast();
   // let body = document.querySelector('body');
   const press = document.querySelector('.press');
   utils.longPress(press, () => {
+    let toast = new Toast();
     toast.show('触发长按事件'); // eslint-disable-line
   }, 1500);
   // console.log(utils.getParam('name', 'http://baidu.com?name=44'));
@@ -41,12 +41,10 @@ window.onload = function() {
     });
   });
   $('.loading').click(() => {
+    let toast = new Toast();
     toast.show('加载中...', {
       alwaysShow: true
     });
-  });
-  $('.close').click(() => {
-    toast.hide();
   });
   // let scene = new THREE.Scene();
   // let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.5, 1000);

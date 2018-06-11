@@ -24,3 +24,57 @@ canvas {
     height: 600px;
     background-color: #eee;
 }
+.box {
+    position:relative;
+    width:30px;
+    height:30px;
+    border: 2px solid rgba($color: #fff, $alpha: .7);
+    // border-width: 2px;
+    // border-style: solid;
+    // border-color: linear-gradient(#999, #d0cfcf);
+    border-radius: 50%;
+    /*整体旋转*/
+    animation:moveover 1s linear infinite;
+}
+.box1 {
+    position:absolute;
+    width: 15px;
+    height: 30px;
+    border-radius:15px 0 0 15px;
+    /* 起始最深颜色为 #999，过渡到中间颜色为 #d0cfcf */
+    background: linear-gradient(transparent, #d0cfcf);
+    background-color: red;
+    z-index:2;
+}
+// .box2 {
+//     position:absolute;
+//   width: 15px;
+//   height: 30px;
+//   border-radius:0 15px 15px 0;
+//   left:50%;
+//   /* 过渡到中间颜色为 #d0cfcf 最终末尾颜色为 #eee */
+//   background: linear-gradient(#eee,#d0cfcf);
+//   z-index:1;
+// }
+// .box3 {
+//     position:absolute;
+//     width:26px;
+//     height:26px;
+//     top:2px;
+//     left:2px;
+//     border-radius:50%;
+//     background-color: transparent;
+//     z-index:2;
+// }
+// @keyframes moveover {
+//     0%   {
+//         transform:rotate(0deg);
+//     }
+//     100% {
+//         transform:rotate(360deg);
+//     }
+// }
+._box {
+    width: 100%;
+    background-color: rgba(0, 0, 0, .7);
+}
