@@ -26,9 +26,6 @@ window.onload = function() {
   // const { name, id } = obj;
   // console.log(name, id);
   $('.show').click(() => {
-    // setTimeout(() => {
-    //   $('.toast_wrap').removeClass('vshow');
-    // }, 800);
     let toast1 = new Toast();
     toast1.show('this is a toast', {
       bottom_center: 'bottom_center'

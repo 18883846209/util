@@ -15,10 +15,12 @@
     display: inline-block;
     max-width: 80%;
     padding: 8px 12px;
+    /* padding: 15px 30px;     */
     color: #fff;
     background-color: rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
     border-radius: 5px;
-    font-size: 16px;   
+    font-size: 16px; 
 }
 .vshow {
     opacity: 1;

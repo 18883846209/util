@@ -1,6 +1,4 @@
 import './toast.css';
-import './lib';
-
 
 const keys = {
   37: 1, 38: 1, 39: 1, 40: 1
@@ -93,6 +91,21 @@ export default class Toast {
       this.toastwrap.style.right = options.right + 'px';
       this.toastwrap.style.bottom = options.bottom + 'px';
     }
+    if (options && options.padding) { // toast内边距
+      this.toasttext.style.padding = options.padding;
+    }
+    if (options && options.color) { // toast颜色
+      this.toasttext.style.color = options.color;
+    }
+    if (options && options.bg) { // toast背景颜色
+      this.toasttext.style.backgroundColor = options.bg;
+    }
+    if (options && options.fontsize) { // toast字体大小
+      this.toasttext.style.fontSize = options.fontsize;
+    }
+    // if (options && options.bg) { // toast背景颜色
+    //   this.toasttext.style.backgroundColor = options.bg;
+    // }
     if (options && options.isModal) {
       this.disTouchmove();
     }
