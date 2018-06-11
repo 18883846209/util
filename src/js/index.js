@@ -46,6 +46,27 @@ window.onload = function() {
       alwaysShow: true
     });
   });
+  let n = 1;
+  let time1;
+  let time2;
+  let dis;
+  $('.double').on('touchstart', () => { // 双击事件
+    if (n === 1) {
+      n += 1;
+      time1 = new Date().getTime();
+    } else if (n >= 2) {
+      time2 = new Date().getTime();
+      dis = time2 - time1;
+      console.log(dis, time1, time2);
+      if (dis <= 500) {
+        n = 1;
+        let toast = new Toast();
+        toast.show('双击');
+      } else {
+        time1 = new Date().getTime();
+      }
+    }
+  });
   // let scene = new THREE.Scene();
   // let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.5, 1000);
   // let renderer = new THREE.WebGLRenderer();
