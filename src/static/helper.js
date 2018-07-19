@@ -25,15 +25,6 @@
 //   })
 // }
 
-function addEventHandler(el, eventname, eventhandler) {
-  if (document.attachEvent) { //ie浏览器
-    el.attachEvent("on" + eventname, eventhandler);
-  } else if (document.addEventListener) //非ie浏览器
-  {
-    el.addEventListener(eventname, eventhandler, false);
-  }
-}
-
 /**
  * [getParam 获取单个url参数]
  * @param  {String} el [需要添加点击态的元素]
@@ -43,6 +34,14 @@ function addClickState(el, activeclass) { // 添加元素点击态
   el = typeof el === 'string' ? document.querySelectorAll(el) : el;
   let addstr = new RegExp('\\s' + activeclass + '$', '');
   console.log(el.length);
+  function addEventHandler(el, eventname, eventhandler) {
+    if (document.attachEvent) { //ie浏览器
+      el.attachEvent("on" + eventname, eventhandler);
+    } else if (document.addEventListener) //非ie浏览器
+    {
+      el.addEventListener(eventname, eventhandler, false);
+    }
+  }
   el.forEach((item) => {
     addEventHandler(item, 'touchstart', (e) => {
       e.currentTarget.className += ' ' + activeclass;
