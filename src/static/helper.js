@@ -25,6 +25,14 @@
 //   })
 // }
 
+function addEventHandler(el, eventname, eventhandler) {
+  if (document.attachEvent) { //ie浏览器
+    el.attachEvent("on" + eventname, eventhandler);
+  } else if (document.addEventListener) //非ie浏览器
+  {
+    el.addEventListener(eventname, eventhandler, false);
+  }
+}
 
 /**
  * [getParam 获取单个url参数]
@@ -36,15 +44,18 @@ function addClickState(el, activeclass) { // 添加元素点击态
   let addstr = new RegExp('\\s' + activeclass + '$', '');
   console.log(el.length);
   el.forEach((item) => {
-    item.addEventListener('touchstart', (e) => {
+    addEventHandler(item, 'touchstart', (e) => {
       e.currentTarget.className += ' ' + activeclass;
     }, false);
-    item.addEventListener('touchmove', (e) => {
+    addEventHandler(item, 'touchmove', (e) => {
       // addstr = eval('/\\s' + activeclass + '\$/');
       e.currentTarget.className = item.className.replace(addstr, '');
     }, false);
-    item.addEventListener('touchend', (e) => {
+    addEventHandler(item, 'touchend', (e) => {
       // addstr = new RegExp('\\s' + activeclass + '\$', '');
+      e.currentTarget.className = item.className.replace(addstr, '');
+    }, false);
+    addEventHandler(item, 'touchcancel', (e) => {
       e.currentTarget.className = item.className.replace(addstr, '');
     }, false);
   });
