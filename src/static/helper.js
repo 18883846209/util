@@ -34,7 +34,7 @@
 function addClickState(el, activeclass) { // 添加元素点击态
   /* eslint-disable */
   el = typeof el === 'string' ? document.querySelectorAll(el) : el;
-  let addstr;
+  let addstr = new RegExp('\\s' + activeclass + '\$', '');
   console.log(el.length);
   el.forEach((item) => {
     item.addEventListener('touchstart', (e) => {
@@ -42,11 +42,10 @@ function addClickState(el, activeclass) { // 添加元素点击态
     }, false);
     item.addEventListener('touchmove', (e) => {
       // addstr = eval('/\\s' + activeclass + '\$/');
-      addstr = new RegExp('\\s' + activeclass + '\$', '');
       e.currentTarget.className = item.className.replace(addstr, '');
     }, false);
     item.addEventListener('touchend', (e) => {
-      addstr = new RegExp('\\s' + activeclass + '\$', '');
+      // addstr = new RegExp('\\s' + activeclass + '\$', '');
       e.currentTarget.className = item.className.replace(addstr, '');
     }, false);
   });
