@@ -32,9 +32,8 @@
  * @param  {String} activeclass   [点击状态的class]
  */
 function addClickState(el, activeclass) { // 添加元素点击态
-  /* eslint-disable */
   el = typeof el === 'string' ? document.querySelectorAll(el) : el;
-  let addstr = new RegExp('\\s' + activeclass + '\$', '');
+  let addstr = new RegExp('\\s' + activeclass + '$', '');
   console.log(el.length);
   el.forEach((item) => {
     item.addEventListener('touchstart', (e) => {
