@@ -32,18 +32,22 @@
  * @param  {String} activeclass   [点击状态的class]
  */
 function addClickState(el, activeclass) { // 添加元素点击态
+  /* eslint-disable */
   el = typeof el === 'string' ? document.querySelectorAll(el) : el;
-  // activeclass = activeclass ? activeclass : '';
-  // console.log(el.length);
+  let addstr;
+  console.log(el.length);
   el.forEach((item) => {
     item.addEventListener('touchstart', (e) => {
       e.currentTarget.className += ' ' + activeclass;
     }, false);
     item.addEventListener('touchmove', (e) => {
-      e.currentTarget.className = item.className.replace(activeclass, '');
+      // addstr = eval('/\\s' + activeclass + '\$/');
+      addstr = new RegExp('\\s' + activeclass + '\$', '');
+      e.currentTarget.className = item.className.replace(addstr, '');
     }, false);
     item.addEventListener('touchend', (e) => {
-      e.currentTarget.className = item.className.replace(activeclass, '');
+      addstr = new RegExp('\\s' + activeclass + '\$', '');
+      e.currentTarget.className = item.className.replace(addstr, '');
     }, false);
   });
 }
@@ -73,7 +77,11 @@ function getParam(name, url) {
  */
 function getParamJson(url) {
   if (!url) url = window.location.href;
-  const pos = url.indexOf('?') + 1;
+  let pos = url.indexOf('?');
+  if (pos <= -1) {
+    return null;
+  }
+  pos += 1;
   const urlarr = url.substring(pos).split('&');
   let json = {};
   let keyarr;
@@ -83,7 +91,7 @@ function getParamJson(url) {
       json[keyarr[0]] = decodeURIComponent(keyarr[1]);
     }
   });
-  console.log(json);
+  // console.log(json);
   return json;
 }
 
@@ -139,6 +147,10 @@ function int2str(n) {
 
 function getAddDayDate(AddDay, date) {
   let nowDate = date ? new Date(date.toString()) : new Date();
+  // if (AddDay && !isNumber(AddDay)) {
+  //   console.log('请传入一个数字');
+  //   return;
+  // }
   nowDate.setDate(nowDate.getDate() + (AddDay ? parseInt(AddDay) : 0)); // 获取AddDay天后的日期
   let y1 = nowDate.getFullYear();
   let m1 = nowDate.getMonth() + 1; // 获取月份
@@ -148,9 +160,6 @@ function getAddDayDate(AddDay, date) {
   // let s1 = nowDate.getSeconds();
   // let ms1 = nowDate.getMilliseconds();
   // console.log(nowDate);
-  // let m0 = new Date().getMonth() + 1;
-  // let d0 = new Date().getDate();
-  // return `${parseInt(m0)}月${parseInt(d0)}日-${m1}月${d1}日`;
   // return [y1, m1, d1, h1, min1, s1, ms1];
   return [y1, m1, d1];
 }

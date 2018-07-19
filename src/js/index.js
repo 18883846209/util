@@ -119,8 +119,8 @@ window.onload = function() {
     // console.log(t);
     // console.log(utils.getcss(dom, 'left'));
   });
-  console.log(utils.getAddDayDate());
-  utils.getParamJson();
+  console.log(utils.getAddDayDate(12));
+  console.log(utils.getParamJson());
   // let x0;
   // $('.slide').on('touchstart', (e) => {
   //   // x0 = e.targetTouches[0].clientX;
@@ -177,88 +177,29 @@ window.onload = function() {
     // let x1 = e.targetTouches[0].clientX;
     $('.slide').css('transform', `translate3d(-20px, 0, 0)`);
   });
+  let keys = {
+    37: 1, 38: 1, 39: 1, 40: 1
+  };
+
+  function preventDefault(e) {
+    e = e || window.event;
+    if (e.preventDefault) e.preventDefault();
+    e.returnValue = false;
+  }
+  window.onwheel = preventDefault;
+  document.onkeydown = (e) => {
+    if (keys[e.keyCode]) {
+      preventDefault(e);
+      return false;
+    }
+    return true;
+  };
+  // let test = ' tes'.replace(/\s/g, '');
+  let test = ' tes';
+  let ss = test.substring(test.indexOf('tes') - 1, test.indexOf('tes') + 3);
+  console.log(test.replace(ss, '').length);
   // console.log(new Date());
   // console.log(new Date('2017-10-19').setDate(10));
   // console.log(navigator.connection);
   // console.log(Object.prototype.toString.call(() => {}));
-  // let scene = new THREE.Scene();
-  // let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.5, 1000);
-  // let renderer = new THREE.WebGLRenderer();
-  // renderer.setSize(window.innerWidth, window.innerHeight, false);
-  // document.body.appendChild(renderer.domElement);
-  // let geometry = new THREE.BoxGeometry(1, 1, 1);
-  // let material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-  // let cube = new THREE.Mesh(geometry, material);
-  // scene.add(cube);
-  // camera.position.z = 20;
-  // let animate = function() {
-  //   requestAnimationFrame(animate);
-  //   cube.rotation.x += 0.1;
-  //   cube.rotation.y += 0.1;
-  //   renderer.render(scene, camera);
-  // };
-  // animate();
-  // let renderer;
-  // let camera;
-  // let scene;
-  // let width;
-  // let height;
-  // function initThree() {
-  //   width = document.querySelector('#canvas-frame').offsetWidth;
-  //   height = document.querySelector('#canvas-frame').offsetHeight;
-  //   renderer = new THREE.WebGLRenderer();
-  //   renderer.setSize(width, height);
-  //   document.getElementById('canvas-frame').appendChild(renderer.domElement);
-  //   renderer.setClearColor(0xFFFFFF, 1.0);
-  // }
-  // function initCamera() {
-  //   camera = new THREE.PerspectiveCamera(75, width / height, 1, 10000);
-  //   camera.position.x = 0;
-  //   camera.position.y = 0;
-  //   camera.position.z = 600;
-  //   camera.up.x = 0;
-  //   camera.up.y = 1;
-  //   camera.up.z = 0;
-  //   camera.lookAt({
-  //     x: 0,
-  //     y: 0,
-  //     z: 0
-  //   });
-  // }
-  // function initScene() {
-  //   scene = new THREE.Scene();
-  // }
-  // let light;
-  // function initLight() {
-  //   light = new THREE.AmbientLight(0xFFFFFF);
-  //   light.position.set(100, 100, 200);
-  //   scene.add(light);
-  //   light = new THREE.PointLight(0x00FF00);
-  //   light.position.set(0, 0, 300);
-  //   scene.add(light);
-  // }
-  // // let cube;
-  // function initObject() {
-  //   let geometry = new THREE.CylinderGeometry(100, 150, 400);
-  //   let material = new THREE.MeshLambertMaterial({ color: 0xFFFF00 });
-  //   let mesh = new THREE.Mesh(geometry, material);
-  //   // mesh.position = new THREE.Vector3(0, 0, 10);
-  //   mesh.position.set(0, 0, 0);
-  //   scene.add(mesh);
-  // }
-  // function animation() {
-  //   //renderer.clear();
-  //   camera.position.x += 1;
-  //   renderer.render(scene, camera);
-  //   requestAnimationFrame(animation);
-  // }
-  // function threeStart() {
-  //   initThree();
-  //   initCamera();
-  //   initScene();
-  //   initLight();
-  //   initObject();
-  //   animation();
-  // }
-  // threeStart();
 };
