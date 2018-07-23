@@ -24,7 +24,13 @@
 //     audioAutoPlay()
 //   })
 // }
-
+function addEventHandler(dom, eventname, eventhandler) {
+  if (document.attachEvent) { //ie浏览器
+    dom.attachEvent('on' + eventname, eventhandler);
+  } else if (document.addEventListener) {
+    dom.addEventListener(eventname, eventhandler, false);
+  }
+}
 /**
  * [addClickState 添加元素点击态]
  * @param  {String} el [需要添加点击态的元素]
@@ -34,13 +40,13 @@ function addClickState(el, activeclass) { // 添加元素点击态
   el = typeof el === 'string' ? document.querySelectorAll(el) : el;
   let addstr = new RegExp('\\s' + activeclass + '$', '');
   console.log(el.length);
-  function addEventHandler(dom, eventname, eventhandler) {
-    if (document.attachEvent) { //ie浏览器
-      dom.attachEvent('on' + eventname, eventhandler);
-    } else if (document.addEventListener) {
-      dom.addEventListener(eventname, eventhandler, false);
-    }
-  }
+  // function addEventHandler(dom, eventname, eventhandler) {
+  //   if (document.attachEvent) { //ie浏览器
+  //     dom.attachEvent('on' + eventname, eventhandler);
+  //   } else if (document.addEventListener) {
+  //     dom.addEventListener(eventname, eventhandler, false);
+  //   }
+  // }
   function removeclass(elclass, element) {
     elclass.currentTarget.className = element.className.replace(addstr, '');
   }
@@ -84,7 +90,7 @@ function getParam(name, url) {
 /**
  * [getParamJson url参数转json对象]
  * @param  {String} url   [default:location.href]
- * @return {String|Boolean}
+ * @return {Object}
  */
 function getParamJson(url) {
   if (!url) url = window.location.href;
@@ -149,7 +155,13 @@ function jsonToParams(json) {
 }
 
 function getcss(o, key) { // 获取元素css样式
+  o = typeof o !== 'string' ? o : document.querySelector(o);
   return o.currentStyle ? o.currentStyle[key] : document.defaultView.getComputedStyle(o, false)[key];
+}
+
+function setCss(o, key, str) {
+  o = typeof o !== 'string' ? o : document.querySelector(o);
+  o.style[key] = str;
 }
 
 function int2str(n) {
@@ -204,6 +216,8 @@ const utils = {
   isWx,
   isQQ,
   getcss,
+  setCss,
+  addEventHandler,
   getAddDayDate,
   addClickState,
   int2str,

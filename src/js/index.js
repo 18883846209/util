@@ -4,6 +4,7 @@ import '../static/flexible';
 import '../css/index.scss';
 import utils from '../static/helper';
 import Toast from '../toast/toast';
+import drag from '../static/drag';
 // import '../static/vconsole.min';
 
 // const THREE = require('three');
@@ -28,7 +29,7 @@ window.onload = function() {
   $('.show').on('touchstart', () => {
     let toast1 = new Toast();
     toast1.show('this is a toast', {
-      bottom_center: 'bottom_center'
+      top_center: 'top_center'
     });
   });
   $('.show1').click(() => {
@@ -67,58 +68,8 @@ window.onload = function() {
       }
     }
   });
-  let params = { // eslint-disable-line
-    left: 0,
-    top: 0,
-    currentX: 0,
-    currentY: 0,
-    flag: false
-  };
-  let dom = document.querySelector('.drag');
-  function drag(target, callback) {
-    if (utils.getcss(target, 'left') !== 'auto') {
-      params.left = utils.getcss(target, 'left');
-    }
-    if (utils.getcss(target, 'top') !== 'auto') {
-      params.top = utils.getcss(target, 'top');
-    }
-    target.ontouchstart = (event) => {
-      params.flag = true;
-      if (event.preventDefault) {
-        event.preventDefault();
-      } else {
-        event.returnValue = false;
-      }
-      params.currentX = event.targetTouches[0].clientX;
-      params.currentY = event.targetTouches[0].clientY;
-    };
-    target.ontouchend = () => {
-      params.flag = false;
-      if (utils.getcss(target, 'left') !== 'auto') {
-        params.left = utils.getcss(target, 'left');
-      }
-      if (utils.getcss(target, 'top') !== 'auto') {
-        params.top = utils.getcss(target, 'top');
-      }
-    };
-    target.ontouchmove = (event) => {
-      let e = event || window.event;
-      if (params.flag) {
-        // let nowX = e.clientX;
-        // let nowY = e.clientY;
-        let disX = e.targetTouches[0].clientX - params.currentX;
-        let disY = e.targetTouches[0].clientY - params.currentY;
-        target.style.left = parseInt(params.left) + disX + 'px';
-        target.style.top = parseInt(params.left) + disY + 'px';
-        console.log(disX);
-      }
-      callback(params);
-    };
-  }
-  drag(dom, () => {
-    // console.log(t);
-    // console.log(utils.getcss(dom, 'left'));
-  });
+  drag('.drag');
+  console.log(utils.getcss('.drag', 'left'));
   console.log(utils.getAddDayDate(12));
   console.log(utils.getParamJson());
   // let x0;
