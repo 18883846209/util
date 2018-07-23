@@ -26,7 +26,7 @@
 // }
 
 /**
- * [getParam 获取单个url参数]
+ * [addClickState 添加元素点击态]
  * @param  {String} el [需要添加点击态的元素]
  * @param  {String} activeclass   [点击状态的class]
  */
@@ -34,13 +34,15 @@ function addClickState(el, activeclass) { // 添加元素点击态
   el = typeof el === 'string' ? document.querySelectorAll(el) : el;
   let addstr = new RegExp('\\s' + activeclass + '$', '');
   console.log(el.length);
-  function addEventHandler(el, eventname, eventhandler) {
+  function addEventHandler(dom, eventname, eventhandler) {
     if (document.attachEvent) { //ie浏览器
-      el.attachEvent("on" + eventname, eventhandler);
-    } else if (document.addEventListener) //非ie浏览器
-    {
-      el.addEventListener(eventname, eventhandler, false);
+      dom.attachEvent('on' + eventname, eventhandler);
+    } else if (document.addEventListener) {
+      dom.addEventListener(eventname, eventhandler, false);
     }
+  }
+  function removeclass(elclass, element) {
+    elclass.currentTarget.className = element.className.replace(addstr, '');
   }
   el.forEach((item) => {
     addEventHandler(item, 'touchstart', (e) => {
@@ -48,14 +50,15 @@ function addClickState(el, activeclass) { // 添加元素点击态
     }, false);
     addEventHandler(item, 'touchmove', (e) => {
       // addstr = eval('/\\s' + activeclass + '\$/');
-      e.currentTarget.className = item.className.replace(addstr, '');
+      removeclass(e, item);
     }, false);
     addEventHandler(item, 'touchend', (e) => {
       // addstr = new RegExp('\\s' + activeclass + '\$', '');
-      e.currentTarget.className = item.className.replace(addstr, '');
+      removeclass(e, item);
     }, false);
     addEventHandler(item, 'touchcancel', (e) => {
-      e.currentTarget.className = item.className.replace(addstr, '');
+      // e.currentTarget.className = item.className.replace(addstr, '');
+      removeclass(e, item);
     }, false);
   });
 }
