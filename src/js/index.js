@@ -29,7 +29,8 @@ window.onload = function() {
   $('.show').on('touchstart', () => {
     let toast1 = new Toast();
     toast1.show('this is a toast', {
-      top_center: 'top_center'
+      top: '100',
+      left: '40'
     });
   });
   $('.show1').click(() => {

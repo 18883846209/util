@@ -82,13 +82,13 @@ export default class Toast {
     if (options && options.bottom_center) {
       this.toastwrap.classList.add('bottom_center');
     }
-    // if (options && (options.top || options.left || options.right || options.bottom)) {
-    //   this.toastwrap.style.width = 'auto';
-    //   this.toastwrap.style.top = options.top + 'px';
-    //   this.toastwrap.style.left = options.left + 'px';
-    //   this.toastwrap.style.right = options.right + 'px';
-    //   this.toastwrap.style.bottom = options.bottom + 'px';
-    // }
+    if (options && (options.top || options.left || options.right || options.bottom)) {
+      this.toastwrap.style.width = 'auto';
+      this.toastwrap.style.top = options.top && options.top + 'px';
+      this.toastwrap.style.left = options.left && options.left + 'px';
+      this.toastwrap.style.right = options.right && options.right + 'px';
+      this.toastwrap.style.bottom = options.bottom && options.bottom + 'px';
+    }
     if (options && options.padding) { // toast内边距
       this.toasttext.style.padding = options.padding;
     }
