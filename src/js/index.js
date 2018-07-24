@@ -30,7 +30,7 @@ window.onload = function() {
     let toast1 = new Toast();
     toast1.show('this is a toast', {
       top: '100',
-      left: '40'
+      left: '200'
     });
   });
   $('.show1').click(() => {
