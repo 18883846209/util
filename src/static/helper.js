@@ -24,6 +24,20 @@
 //     audioAutoPlay()
 //   })
 // }
+function canvasbgToWhite(ctx) {
+  let imageData = ctx.getImageData(0, 0, c.width, c.height);
+  for (let i = 0; i < imageData.data.length; i += 4) {
+    // 当该像素是透明的，则设置成白色
+    if (imageData.data[i + 3] === 0) {
+      imageData.data[i] = 255;
+      imageData.data[i + 1] = 255;
+      imageData.data[i + 2] = 255;
+      imageData.data[i + 3] = 255;
+    }
+  }
+  ctx.putImageData(imageData, 0, 0);
+}
+
 function addEventHandler(dom, eventname, eventhandler) {
   if (document.attachEvent) { //ie浏览器
     dom.attachEvent('on' + eventname, eventhandler);
@@ -204,6 +218,7 @@ const isIPhone = !isAndroid && /ipod|iphone/i.test(ua);
 const isIOS = isIPad || isIPhone;
 
 const utils = {
+  canvasbgToWhite,
   getParam,
   longPress,
   getIOSVersion,
