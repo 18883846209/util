@@ -1,0 +1,48 @@
+.toast_wrap {
+    position: fixed;
+    top: 45%;
+    width: 100%;
+    /* max-width: 80%; */
+    text-align: center;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    /* backface-visibility: hidden; */
+    transition: all .3s;
+    font-size: 0;
+    -webkit-text-size-adjust: none;
+    z-index: 99999 !important;
+}
+.toast_text {
+    display: inline-block;
+    max-width: 80vw;
+    padding: 8px 12px;
+    /* padding: 15px 30px;     */
+    color: #fff;
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    background-color: #000;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.vshow {
+    opacity: 0.8;
+    visibility: visible;
+}
+.top_center {
+    top: 45px;
+}
+.bottom_center {
+    top: auto;
+    bottom: 45px;
+}
+.modal_mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}

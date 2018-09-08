@@ -1,0 +1,146 @@
+@import './base.scss';
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.press, .show, .show1, .loading, .double, .text {
+    width: 120px;
+    padding: 5px 10px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #eee;
+    margin: 20px auto;
+    border-radius: 5px;
+    &:active {
+        // color: #fff;
+        // background-color: rgba($color: #000000, $alpha: 0.6);
+        transform: scale(0.95);
+    }
+}
+.drag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    padding: 5px 10px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+.text {
+    color: transparent;
+    text-shadow: 0 0 6px rgba($color: #333, $alpha: 0.4);
+}
+canvas {
+    width: 100%;
+    height: 100%;
+}
+#canvas-frame {
+    width: 100%;
+    height: 600px;
+    background-color: #eee;
+}
+.box {
+    position:relative;
+    width:30px;
+    height:30px;
+    border: 2px solid rgba($color: #fff, $alpha: .7);
+    // border-width: 2px;
+    // border-style: solid;
+    // border-color: linear-gradient(#999, #d0cfcf);
+    border-radius: 50%;
+    /*整体旋转*/
+    animation:moveover 1s linear infinite;
+}
+.box1 {
+    position:absolute;
+    width: 15px;
+    height: 30px;
+    border-radius:15px 0 0 15px;
+    /* 起始最深颜色为 #999，过渡到中间颜色为 #d0cfcf */
+    background: linear-gradient(transparent, #d0cfcf);
+    background-color: red;
+    z-index:2;
+}
+// .box2 {
+//     position:absolute;
+//   width: 15px;
+//   height: 30px;
+//   border-radius:0 15px 15px 0;
+//   left:50%;
+//   /* 过渡到中间颜色为 #d0cfcf 最终末尾颜色为 #eee */
+//   background: linear-gradient(#eee,#d0cfcf);
+//   z-index:1;
+// }
+// .box3 {
+//     position:absolute;
+//     width:26px;
+//     height:26px;
+//     top:2px;
+//     left:2px;
+//     border-radius:50%;
+//     background-color: transparent;
+//     z-index:2;
+// }
+// @keyframes moveover {
+//     0%   {
+//         transform:rotate(0deg);
+//     }
+//     100% {
+//         transform:rotate(360deg);
+//     }
+// }
+._box {
+    width: 100%;
+    background-color: rgba(0, 0, 0, .7);
+}
+.slide {
+    width: 100%;
+    height: 150px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    white-space: nowrap;
+    // overflow-y: hidden;
+    // background-color: #eee;
+    font-size: 0;
+    // transition: all .3s;
+    transform: translate3d(0, 0, 0);
+    &.left {
+        transform: translate3d(-20%, 0, 0);
+    }
+    .slide1 {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+    }
+    .slide2 {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-color: red;
+        transform: translate3d(100%, -100%, 0);
+    }
+}
+.con {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -100px;
+    background-color: #fff;
+    z-index: 100;
+    overflow-y: scroll;
+}
+.con1 {
+    height: 100px;
+}
